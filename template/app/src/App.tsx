@@ -1,38 +1,18 @@
-import {
-  StyleSheet,
-  Text,
-  TextStyle,
-  useColorScheme, ViewStyle
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { NavigationContainer } from "@react-navigation/native"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
-import {
-  Colors
-} from 'react-native/Libraries/NewAppScreen';
+import HomeScreen from "./screen/Home.screen"
+
+const Stack = createNativeStackNavigator()
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle: ViewStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  const welcomeTextStyle: TextStyle= {
-    color: isDarkMode ? Colors.lighter : Colors.darker,
-  }
-
   return (
-    <SafeAreaView style={[backgroundStyle, styles.container]}>
-      <Text style={welcomeTextStyle}>Welcome</Text>
-    </SafeAreaView>
-  );
-};
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex:1
-  },
-
-});
-
-export default App;
+export default App
